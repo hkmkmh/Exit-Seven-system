@@ -16,5 +16,5 @@ Traffic congestion is a significant issue in Riyadh, particularly during peak ho
 ## Recent statistics in Riyadh
 ***Average annual time delay due to rush hour traffic in the Middle East and North Africa region in 2023, by city***
 <img width="699" alt="Screen Shot 2024-10-14 at 2 29 48 AM" src="https://github.com/user-attachments/assets/ad6cac01-d8f5-403b-b929-91b861e8bd8a">.
-Referance : https://www.statista.com/statistics/1331996/mena-road-traffic-delay-by-city/
+-Referance : https://www.statista.com/statistics/1331996/mena-road-traffic-delay-by-city/
 
