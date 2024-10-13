@@ -18,3 +18,9 @@ Traffic congestion is a significant issue in Riyadh, particularly during peak ho
 <img width="699" alt="Screen Shot 2024-10-14 at 2 29 48 AM" src="https://github.com/user-attachments/assets/ad6cac01-d8f5-403b-b929-91b861e8bd8a">
 - Referance : https://www.statista.com/statistics/1331996/mena-road-traffic-delay-by-city/
 
+## Key Metrics for Analysis
+The system evaluates congestion levels based on three critical metrics:
+
+1.Vehicle Density: Assessing the number of vehicles on the road.
+2.Speed Estimation: Calculating the average speed of vehicles to gauge traffic flow.
+3.Empty Spaces: Identifying available road space to inform decision-making.
