@@ -21,6 +21,6 @@ Traffic congestion is a significant issue in Riyadh, particularly during peak ho
 ## Key Metrics for Analysis
 The system evaluates congestion levels based on three critical metrics:
 
-1.Vehicle Density: Assessing the number of vehicles on the road.
-2.Speed Estimation: Calculating the average speed of vehicles to gauge traffic flow.
-3.Empty Spaces: Identifying available road space to inform decision-making.
+1.Vehicle Density: Assessing the number of vehicles on the road
+2.Speed Estimation: Calculating the average speed of vehicles to gauge traffic flow
+3.Empty Spaces: Identifying available road space to inform decision-making
