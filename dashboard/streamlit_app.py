@@ -16,7 +16,7 @@ app = Flask(__name__, static_folder='static')  # Set the static folder
 
 
 # Initialize MongoDB connection
-mongo_uri = "mongodb+srv://aaaa1000373:Aa123123@cluster0.lpltb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+mongo_uri = "MongoDB _KEY"
 if mongo_uri is None:
     raise ValueError("MONGO_URI environment variable not set")
 
