@@ -18,16 +18,18 @@ Traffic congestion is a significant issue in Riyadh, particularly during peak ho
 <img width="699" alt="Screen Shot 2024-10-14 at 2 29 48 AM" src="https://github.com/user-attachments/assets/ad6cac01-d8f5-403b-b929-91b861e8bd8a">
 - Referance : https://www.statista.com/statistics/1331996/mena-road-traffic-delay-by-city/
 
-## Key Metrics for Analysis
-***The system evaluates congestion levels based on three critical metrics:***
-
-1.Vehicle Density: Assessing the number of vehicles on the road
-
-2.Speed Estimation: Calculating the average speed of vehicles to gauge traffic flow
-
-3.Empty Spaces: Identifying available road space to inform decision-making
 
 ## Features
 * Automated Traffic Management: Utilizes YOLO models to assess traffic conditions and autonomously close or open street entrances based on real-time analysis.
 * Data-Driven Decisions: The system bases its actions on continuous analysis of traffic metrics, ensuring proactive management.
 * AI Chatbot: An LLM (Large Language Model), specifically Llama-7b, is integrated to facilitate communication between traffic officers and the system, allowing officers to chat for real-time updates, queries, and context-aware insights.
+
+## Methodology
+The project utilizes computer vision techniques, specifically YOLOv8, along with fine-tuning and Slicing Aided Hyper Inference (SAHI) to enhance small object detection performance. Additionally, it employs NLP and LLM technology, specifically Llama-7b, to improve communication and provide valuable insights.
+
+## Results
+The ExitSeven system effectively identifies congestion and autonomously manages street entrances, reducing traffic delays and improving overall road efficiency.
+
+## Demo
+![image](https://github.com/user-attachments/assets/2fd8b4b6-b8a6-4601-b725-2d95a507c64a)
+
