@@ -1,0 +1,8 @@
+Flask
+pandas
+langchain
+langchain-groq 
+Jinja2 
+python-dotenv
+requests 
+pymongo

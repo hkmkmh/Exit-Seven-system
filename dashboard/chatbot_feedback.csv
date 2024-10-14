@@ -1,0 +1,8 @@
+Category,Strengths,Weaknesses,Recommendation
+UI,"Clean, responsive, well-balanced color scheme.",Input field's border radius feels inconsistent.,Refine border radius for input fields and buttons.
+UX,"Smooth scroll, welcome message, pressing Enter to send message.",No clear indication when bot finishes responding.,Add visual cue for when bot response completes.
+Functionality,"Handles traffic-related queries well, responds in Arabic.",Does not guide user back to traffic queries when asked non-traffic questions.,
+Performance,"Responds in a timely manner, uses 'Bot is typing' to manage expectations.",Could slow down with large MongoDB queries.,
+Scalability,Handles single conversation well.,May face bottlenecks with multiple users unless optimized.,
+Accuracy,Concise traffic reports.,Accuracy depends on how well MongoDB data is structured.,
+Overall Recommendations,,,"Add multi-language support (English & Arabic)., Improve error handling for unexpected inputs., Implement session tracking for conversation history."

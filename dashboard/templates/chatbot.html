@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Management Chatbot</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f6f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding-top: 70px; /* Adjusted to accommodate fixed navbar */
+        }
+        .chat-container {
+            max-width: 600px;
+            margin: 10px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .chat-box {
+            height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 15px;
+            background-color: #f8f9fa;
+            scroll-behavior: smooth; /* Smooth scrolling */
+        }
+        .message {
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+        .user-message {
+            text-align: right;
+        }
+        .user-message p {
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 12px;
+            padding: 8px 12px;
+            display: inline-block;
+            max-width: 80%;
+        }
+        .bot-message p {
+            background-color: #e2e2e2;
+            border-radius: 12px;
+            padding: 8px 12px;
+            display: inline-block;
+            max-width: 80%;
+        }
+        .input-group {
+            display: flex;
+        }
+        .input-group input {
+            flex: 1;
+            border-radius: 20px 0 0 20px;
+            padding: 10px;
+        }
+        .input-group button {
+            border-radius: 0 20px 20px 0;
+            padding: 10px 15px;
+        }
+        .back-button {
+            margin-top: 20px;
+            display: block;
+            text-align: center;
+        }
+        .chat-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .chat-header img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+        /* Smooth fade-in animation */
+        .message p {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        /* Media query for mobile responsiveness */
+        @media (max-width: 768px) {
+            .chat-container {
+                width: 90%;
+                margin-top: 20px;
+            }
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+        .nav-custom {
+            background-color: #3f3f3f;
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .nav-custom a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+            margin: 5px;
+            white-space: nowrap;
+        }
+        .nav-custom a:hover {
+            background-color: #7d7d7d;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <!-- New Navbar -->
+    <div class="nav-custom">
+        <a href="/">Home</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/chatbot">Chatbot</a>
+    </div>
+
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>🚦 Traffic Management Chatbot 🚦</h2>
+        </div>
+        <div class="chat-box" id="chat-box"></div>
+        <div class="input-group">
+            <input type="text" id="user-input" class="form-control" placeholder="Type your question here..." aria-label="User question">
+            <div class="input-group-append">
+                <button class="btn btn-primary" id="send-button" aria-label="Send message">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>©2024 Exit 7. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const chatBox = document.getElementById('chat-box');
+        const userInput = document.getElementById('user-input');
+        const sendButton = document.getElementById('send-button');
+
+        // Function to append message to the chat box
+        function appendMessage(content, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message ' + (sender === 'user' ? 'user-message' : 'bot-message');
+            messageDiv.innerHTML = `<p>${content}</p>`;
+            
+            // Create feedback buttons only for bot messages
+            if (sender === 'bot') {
+                const feedbackDiv = document.createElement('div');
+                feedbackDiv.className = 'feedback';
+                feedbackDiv.style.marginTop = '5px';
+                feedbackDiv.innerHTML = `
+                    <button class="btn btn-success btn-sm" onclick="saveFeedback(true)">👍 </button>
+                    <button class="btn btn-danger btn-sm" onclick="saveFeedback(false)">👎 </button>
+                `;
+                messageDiv.appendChild(feedbackDiv);
+            }
+            
+            chatBox.appendChild(messageDiv);
+            chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
+        }
+
+        // Function to show bot is typing
+        function showBotTyping() {
+            const typingMessage = document.createElement('div');
+            typingMessage.className = 'message bot-message';
+            typingMessage.id = 'typing-message';
+            typingMessage.innerHTML = `<p>Bot is typing...</p>`;
+            chatBox.appendChild(typingMessage);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // Function to remove bot typing message
+        function removeBotTyping() {
+            const typingMessage = document.getElementById('typing-message');
+            if (typingMessage) {
+                typingMessage.remove();
+            }
+        }
+
+        // Function to send welcome message on page load
+        function sendWelcomeMessage() {
+            appendMessage("مرحبًا بك في روبوت الدردشة لإدارة حركة المرور! كيف يمكنني مساعدتك اليوم", 'bot');
+        }
+
+        // Call the function to send a welcome message
+        sendWelcomeMessage();
+
+        // Send message to the server and get a response
+        sendButton.addEventListener('click', () => {
+            const question = userInput.value.trim();
+            if (question) {
+                appendMessage(question, 'user');
+                userInput.value = '';
+
+                // Show typing message
+                showBotTyping();
+
+                fetch('/generate_report', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `question=${encodeURIComponent(question)}`,
+                })
+                .then(response => response.json())
+                .then(data => {
+                    removeBotTyping();
+                    appendMessage(data.response, 'bot');
+                })
+                .catch(error => {
+                    removeBotTyping();
+                    appendMessage('Error: Unable to get response.', 'bot');
+                });
+            }
+        });
+
+        // Function to save feedback
+        function saveFeedback(isLike) {
+            const lastBotMessage = chatBox.lastElementChild.querySelector('p').innerText;
+            const userMessage = chatBox.childNodes[chatBox.childNodes.length - 2].querySelector('p').innerText;
+            const feedback = {
+                question: userMessage,
+                response: lastBotMessage,
+                like: isLike,
+            };
+
+            // Send feedback to the server
+            fetch('/save_feedback', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(feedback),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data.message); // Log the success message
+                // Hide feedback buttons after saving
+                const feedbackButtons = chatBox.lastElementChild.querySelector('.feedback');
+                if (feedbackButtons) {
+                    feedbackButtons.style.display = 'none'; // Hide feedback buttons
+                }
+            })
+            .catch(error => {
+                console.error('Error saving feedback:', error);
+            });
+        }
+
+        // Allow pressing Enter to send the message
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendButton.click();
+            }
+        });
+    </script>
+</body>
+</html>

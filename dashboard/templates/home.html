@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f6f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-top: 50px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .content-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .content-container img {
+            max-width: 45%; /* Increased image size */
+            height: auto;
+            margin-right: 20px;
+            border-radius: 5px;
+        }
+
+        .content-container div {
+            max-width: 60%;
+            text-align: left;
+            font-family: 'Georgia', serif;
+            font-weight: normal;
+            font-size: 1.1em;
+            line-height: 1.6em;
+            color: #333;
+        }
+
+        .content-container p {
+            margin-top: 20px;
+            margin-left: 50px; /* Moves the paragraph a bit to the right */
+            font-style: italic; /* Makes the font italic */
+        }
+
+        footer {
+            margin-top: 50px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .nav-custom {
+            background-color: #3f3f3f;
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-custom a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+            margin: 5px;
+            white-space: nowrap;
+        }
+
+        .nav-custom a:hover {
+            background-color: #7d7d7d;
+            border-radius: 3px;
+        }
+
+        @media (max-width: 768px) {
+            .content-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .content-container img {
+                max-width: 100%;
+                margin-bottom: 20px;
+                margin-right: 0;
+            }
+
+            .content-container div {
+                max-width: 100%;
+                text-align: center;
+                margin-left: 0;
+            }
+
+            .content-container p {
+                text-align: center;
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav-custom">
+        <a href="/">Home</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/chatbot">Chatbot</a>
+    </div>
+
+    <h1>Welcome to Traffic Management System 🚧 🚗</h1>
+
+    <div class="content-container">
+        <img src="/static/Exit7.png" alt="Exit 7 Logo">
+        <div>
+            <p>
+                The Traffic Management System is designed to monitor and manage traffic flow at key exit points. 
+                By providing real-time data on vehicle counts, gate statuses, and traffic conditions, it helps ensure smooth and safe traffic management across the city. 
+                The system integrates advanced data analytics to detect traffic congestion and suggest possible solutions to ease the flow.
+            </p>
+            <p>
+                In addition to managing traffic at exit points, the system offers predictive analytics that allows authorities to plan and execute effective traffic control strategies. 
+                By utilizing historical data and real-time inputs, it can predict traffic patterns and inform gate operators on when to adjust flow or close certain lanes, ensuring a safe and efficient flow of vehicles.
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p>©2024 Exit 7. All rights reserved.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

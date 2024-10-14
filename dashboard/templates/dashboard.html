@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        body {
+            background-color: #f4f6f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            padding-top: 70px;
+        }
+
+        .container {
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .card {
+            margin: 10px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-body {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .media-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .map-card,
+        .video-card {
+            width: 100%;
+            max-width: 45%;
+        }
+
+        video {
+            width: 100%;
+            height: 350px;
+            border-radius: 10px;
+        }
+
+        .button-container {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .button-container button {
+            width: 150px;
+            height: 50px;
+            font-size: 18px;
+            margin: 0 10px;
+        }
+
+        .nav-custom {
+            background-color: #3f3f3f;
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-custom a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+            margin: 5px;
+            white-space: nowrap;
+        }
+
+        .nav-custom a:hover {
+            background-color: #7d7d7d;
+            border-radius: 3px;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown .dropdown-menu {
+            background-color: #3f3f3f;
+            border: none;
+        }
+
+        .dropdown .dropdown-menu a {
+            color: white;
+            padding: 5px 10px;
+            display: block;
+        }
+
+        .dropdown .dropdown-menu a:hover {
+            background-color: #7d7d7d;
+        }
+
+        .btn-open {
+            background-color: green;
+            color: white;
+        }
+
+        .btn-open:hover {
+            background-color: darkgreen;
+        }
+
+        .btn-close {
+            background-color: red;
+            color: white;
+        }
+
+        .btn-close:hover {
+            background-color: darkred;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .logo {
+            max-width: 150px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- New Navbar -->
+    <div class="nav-custom">
+        <a href="/">Home</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/chatbot">Chatbot</a>
+        
+        <!-- New "More" Dropdown -->
+        <div class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">More</a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="#">Exit 1</a>
+                <a class="dropdown-item" href="#">Exit 2</a>
+                <a class="dropdown-item" href="#">Exit 3</a>
+                <a class="dropdown-item" href="#">Exit 4</a>
+                <a class="dropdown-item" href="#">Exit 5</a>
+                <a class="dropdown-item" href="#">Exit 6</a>
+                <a class="dropdown-item" href="#">Exit 7</a>
+                <a class="dropdown-item" href="#">Exit 8</a>
+                <a class="dropdown-item" href="#">Exit 9</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Display Image -->
+    <div class="container">
+        <img src="{{ url_for('static', filename='Exit7.png') }}" alt="Exit 7 Logo" class="logo">
+    </div>
+
+    <div class="container mt-5">
+        <h1 class="text-center">🚦 Traffic Management Dashboard 🚦</h1>
+
+        <!-- Cards -->
+        <div class="row card-row justify-content-center mt-5">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header">🚗 Exit Name</div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ exit_name }}</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header">🚦 Traffic State</div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ traffic_state }}</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header">🚧 Gate Status</div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ gate_state }}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Map and Video side by side -->
+        <div class="media-container">
+            <!-- Map in a card -->
+            <div class="map-card card">
+                <div class="card-header">🗺️ Traffic Map</div>
+                <div class="card-body">
+                    <div class="map-container">
+                        {{ map_html | safe }}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video in a card -->
+            <div class="video-card card">
+                <div class="card-header">🎥 Live Traffic Video</div>
+                <div class="card-body">
+                    <video controls>
+                        <source src="{{ url_for('static', filename='videos/traffic_video.mp4') }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
+
+        <!-- New Button Container -->
+        <div class="button-container">
+            <button class="btn btn-open">Open</button>
+            <button class="btn btn-close">Close</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>©2024 Exit 7. All rights reserved.</p>
+    </footer>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+</body>
+
+</html>

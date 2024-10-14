@@ -1,0 +1,156 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+#chat-container {
+    width: 400px;
+    height: 600px;
+    background: white;
+    margin: 50px auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+#chat-box {
+    height: 500px;
+    overflow-y: auto;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.user-message {
+    background-color: #d1e7dd;
+    text-align: right;
+}
+
+.bot-message {
+    background-color: #e9ecef;
+    text-align: left;
+}
+
+#input-container {
+    display: flex;
+    padding: 10px;
+}
+
+#question {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+#send-button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#send-button:hover {
+    background-color: #0056b3;
+}
+
+.nav-custom {
+    background-color: #3f3f3f;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-custom a {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+    margin: 5px;
+    white-space: nowrap;
+}
+
+.nav-custom a:hover {
+    background-color: #7d7d7d;
+    border-radius: 3px;
+}
+
+/* Updated content-container styling for paragraph */
+.content-container p {
+    margin-left: 50px; /* Moves the paragraph a bit to the right */
+    font-style: italic; /* Makes the font italic */
+    line-height: 1.6;
+}
+
+/* Dropdown Menu Styling */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown .dropdown-menu {
+    display: none;
+    background-color: #3f3f3f;
+    position: absolute;
+    min-width: 120px;
+    margin-top: 10px;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    padding: 0;
+}
+
+.dropdown .dropdown-menu a {
+    color: white;
+    padding: 8px 15px;
+    display: block;
+    text-decoration: none;
+}
+
+.dropdown .dropdown-menu a:hover {
+    background-color: #7d7d7d;
+}
+
+.btn-open {
+    background-color: green;
+    color: white;
+}
+
+.btn-open:hover {
+    background-color: darkgreen;
+}
+
+.btn-close {
+    background-color: red;
+    color: white;
+}
+
+.btn-close:hover {
+    background-color: darkred;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #555;
+}
+
+/* Updated logo styling for increased size */
+.logo {
+    max-width: 200px; /* Increased logo size */
+    margin-top: 20px;
+}
