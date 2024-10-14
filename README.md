@@ -33,7 +33,7 @@ The ExitSeven system effectively identifies congestion and autonomously manages 
 ## Demo
 ![image](https://github.com/user-attachments/assets/2fd8b4b6-b8a6-4601-b725-2d95a507c64a)
 <img width="954" alt="Screen Shot 2024-10-14 at 3 11 07 AM" src="https://github.com/user-attachments/assets/65ebfeac-f0b4-4223-b3c7-fb6cef60b05a">
-<img width="965" alt="Screen Shot 2024-10-14 at 3 11 19 AM" src="https://github.com/user-attachments/assets/6e097987-6832-4092-b654-c295a1c28f4e">
+
 
 
 
